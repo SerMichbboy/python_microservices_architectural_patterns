@@ -103,51 +103,61 @@ if can_edit(user):
 - **Практичность важнее чистоты** — допустимы разумные компромиссы.  
 - **Лучшие практики:** SOLID, DRY, KISS, Code Review.
 
-### Примеры использования принципов:
-**SOLID:**
-```python
-# Пример Single Responsibility Principle
-class ReportGenerator:
-    def generate(self, data):
-        # генерация отчета
-        pass
+### Примеры использования
 
-class ReportSaver:
-    def save(self, report):
-        # сохранение отчета
-        pass
-```
-**DRY (Don't Repeat Yourself):**
+#### SOLID
 ```python
-# Плохо
+# Принцип единственной ответственности (SRP)
+
+# Плохо: один класс и валидирует данные, и сохраняет их
+class UserHandler:
+    def validate(self, data): ...
+    def save(self, data): ...
+
+# Хорошо: разделяем обязанности
+class UserValidator:
+    def validate(self, data): ...
+
+class UserRepository:
+    def save(self, data): ...
+```
+
+#### DRY
+```python
+# Плохо: дублирование кода
+
+def calculate_rectangle_area(width, height):
+    return width * height
+
+def calculate_square_area(side):
+    return side * side
+
+# Хорошо: общая логика вынесена
+
 def calculate_area(width, height):
     return width * height
 
-def calculate_box_area(w, h):
-    return w * h
-
-# Хорошо
-def calculate_area(width, height):
-    return width * height
-
-calculate_box_area = calculate_area
+def calculate_square_area(side):
+    return calculate_area(side, side)
 ```
-**KISS (Keep It Simple, Stupid):**
+
+#### KISS
 ```python
-# Плохо
-def complex_sum(a, b, *args):
-    result = 0
-    for val in [a, b, *args]:
-        result += val
-    return result
+# Плохо: чрезмерная сложность
 
-# Хорошо
-def simple_sum(a, b):
-    return a + b
+def is_even(number):
+    return True if number % 2 == 0 else False
+
+# Хорошо: просто и понятно
+
+def is_even(number):
+    return number % 2 == 0
 ```
-**Code Review:**
-- Все изменения проходят ревью другим разработчиком.  
-- Проверяется читаемость, тесты, соответствие стандартам и принципам.
+
+#### Code Review
+- Каждый merge request проходит ревью минимум одним разработчиком.  
+- Используем чек-листы: читаемость, тесты, архитектура.  
+- Обсуждаем спорные решения, фиксируем договоренности в документации.
 
 ---
 
