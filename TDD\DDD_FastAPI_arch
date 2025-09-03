@@ -5,17 +5,17 @@ app/
 │   │   └── schemas/            # DTO (Pydantic модели для валидации)
 │   └── deps.py                 # Depends-фабрики для DI (репозитории, сервисы)
 │
-├── domain/                     # Бизнес-домены (чистая логика)
-│   └── users/
-│       ├── entities.py         # Сущности (User, Value Objects)
-│       ├── services.py         # Доменные сервисы (правила работы с User)
-│       └── exceptions.py       # Исключения доменного уровня
-│
 ├── use_cases/                  # Сценарии использования (application layer)
 │   └── users/
 │       ├── register_user.py    # Регистрация пользователя
 │       ├── login_user.py       # Логин
 │       └── update_profile.py   # Обновление профиля
+│
+├── domain/                     # Бизнес-домены (чистая логика)
+│   └── users/
+│       ├── entities.py         # Сущности (User, Value Objects)
+│       ├── services.py         # Доменные сервисы (правила работы с User)
+│       └── exceptions.py       # Исключения доменного уровня
 │
 ├── infrastructure/             # Инфраструктурный слой (адаптеры)
 │   ├── db/                     # PostgreSQL
