@@ -1,15 +1,11 @@
 app/
-├── main.py                       # Точка входа (FastAPI, подключение роутеров)
+├── main.py                       # FastAPI, подключение роутеров
 │
-├── api/                          # Внешний слой (контракты: request/response)
+├── api/                          # внешний слой
 │   ├── v1/
-│   │   ├── endpoints/            # эндпоинты (users.py, auth.py и т.п.)
-│   │   └── schemas/              # Pydantic DTO
-│   └── deps.py                   # Depends (в т.ч. сервисы Redis/Kafka)
-│
-├── core/                         # ядро (конфиги, middleware, DI)
-│   ├── config.py
-│   └── security.py
+│   │   ├── endpoints/            # users.py, auth.py, ...
+│   │   └── schemas/              # DTO (Pydantic)
+│   └── deps.py                   # зависимости (DI для сервисов)
 │
 ├── domain/                       # бизнес-домены
 │   └── users/
@@ -19,28 +15,26 @@ app/
 │
 ├── infrastructure/               # инфраструктура
 │   ├── db/                       # PostgreSQL
-│   │   ├── base.py
-│   │   ├── session.py
+│   │   ├── config.py             # настройки Postgres
+│   │   ├── session.py            # подключение к БД
 │   │   └── repositories.py
 │   │
-│   ├── redis/                    # Redis client
-│   │   ├── client.py             # инициализация Redis
-│   │   └── cache_service.py      # сервис кеширования (UserCacheService)
+│   ├── redis/
+│   │   ├── config.py             # настройки Redis
+│   │   ├── client.py             # создание redis-клиента
+│   │   └── cache_service.py      # UserCacheService
 │   │
-│   ├── kafka/                    # Kafka producer/consumer
+│   ├── kafka/
+│   │   ├── config.py             # настройки Kafka
 │   │   ├── producer.py
 │   │   ├── consumer.py
-│   │   └── events_service.py     # сервис для работы с событиями (EventService)
+│   │   └── events_service.py     # EventService
 │   │
-│   └── email/                    
-│       └── sender.py             # пример внешнего SMTP
+│   └── email/
+│       ├── config.py             # SMTP настройки
+│       └── sender.py
 │
 └── tests/
-    ├── unit/                     # чистая бизнес-логика
-    │   └── test_user_service.py
-    ├── integration/              # Redis, Kafka, API
-    │   ├── test_user_api.py
-    │   ├── test_cache_service.py
-    │   └── test_kafka_service.py
-    └── e2e/                      # сценарии пользователя
-        └── test_register_login.py
+    ├── unit/
+    ├── integration/
+    └── e2e/
