@@ -1,0 +1,65 @@
+project-root/
+├── app/                               # Код приложения (FastAPI + DDD)
+│   ├── api/                           # HTTP слой (REST)
+│   │   ├── v1/
+│   │   │   ├── endpoints/             # users.py, auth.py, ...
+│   │   │   └── schemas/               # Pydantic модели (DTO)
+│   │   └── deps.py                    # Depends для DI (use_cases, инфраструктура)
+│   │
+│   ├── domain/                        # Чистая бизнес-логика
+│   │   └── users/
+│   │       ├── entities.py            # User, Value Objects
+│   │       ├── services.py            # Бизнес-сервисы (валидации, правила)
+│   │       └── exceptions.py          # Доменные ошибки
+│   │
+│   ├── use_cases/                     # Application layer
+│   │   └── users/
+│   │       ├── register_user.py
+│   │       ├── login_user.py
+│   │       └── update_profile.py
+│   │
+│   ├── infrastructure/                # Адаптеры
+│   │   ├── db/
+│   │   │   ├── config.py              # Настройки Postgres
+│   │   │   ├── session.py             # SessionLocal / engine
+│   │   │   └── repositories.py        # UserRepository, BaseRepository
+│   │   │
+│   │   ├── redis/
+│   │   │   ├── config.py              # Настройки Redis
+│   │   │   ├── client.py              # Redis клиент
+│   │   │   └── cache_service.py       # UserCacheService
+│   │   │
+│   │   ├── kafka/
+│   │   │   ├── config.py              # Настройки Kafka
+│   │   │   ├── producer.py
+│   │   │   ├── consumer.py
+│   │   │   └── events_service.py      # EventService
+│   │   │
+│   │   └── email/
+│   │       ├── config.py              # Настройки SMTP
+│   │       └── sender.py              # EmailSender
+│   │
+│   └── bootstrap/                     # Поднятие приложения
+│       ├── app_factory.py             # create_app() фабрика FastAPI
+│       ├── lifespan.py                # startup/shutdown hooks
+│       └── __init__.py
+│
+├── tests/                              # Тесты
+│   ├── unit/                           # Unit-тесты (domain, use_cases)
+│   ├── integration/                    # Integration-тесты (Redis/Kafka/DB)
+│   └── e2e/                            # Сквозные E2E-тесты через FastAPI TestClient
+│
+├── docker/                             # Docker файлы для окружений
+│   ├── Dockerfile
+│   ├── docker-compose.dev.yml
+│   ├── docker-compose.test.yml
+│   └── docker-compose.prod.yml
+│
+├── .env.dev                             # Dev переменные окружения
+├── .env.test                            # Test переменные окружения
+├── .env.prod                            # Prod переменные окружения
+├── scripts/                             # Скрипты для миграций, деплоя, тестов
+│   ├── migrate.sh
+│   ├── test.sh
+│   └── start.sh
+└── README.md
