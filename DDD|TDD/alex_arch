@@ -1,0 +1,47 @@
+.
+├── docker-compose.yml          # Конфигурация для запуска зависимостей (PostgreSQL, Redis, RabbitMQ)
+├── Dockerfile                  # Инструкция для сборки Docker-образа приложения
+└── src                         # Исходный код проекта
+    └── app_name                # Корневой пакет приложения
+        ├── application         # СЛОЙ ПРИЛОЖЕНИЯ (Use Cases)
+        │   ├── common
+        │   │   └── interactor.py       # Базовый класс или утилиты для интеракторов (Use Case)
+        │   ├── create_user.py          # Use Case: Сценарий "Создание пользователя"
+        │   ├── delete_user.py          # Use Case: Сценарий "Удаление пользователя"
+        │   └── ports                   # ПОРТЫ: Интерфейсы для взаимодействия с внешним миром
+        │       ├── files_client.py             # Интерфейс для работы с файловым хранилищем
+        │       ├── notifications_client.py     # Интерфейс для отправки уведомлений
+        │       ├── transaction_manager.py      # Интерфейс для управления транзакциями (Unit of Work)
+        │       └── user_repository.py          # Интерфейс репозитория для работы с пользователями
+        ├── bootstrap            # СЛОЙ ИНИЦИАЛИЗАЦИИ (Вход в приложение)
+        │   ├── entrypoints             # Точки входа в приложение
+        │   │   ├── asgi.py                     # ASGI-приложение (FastAPI/Django Channels)
+        │   │   └── broker.py                   # Обработчик сообщений из брокера (Celery/RabbitMQ)
+        │   ├── ioc.py                  # Контейнер инверсии управления (DI-контейнер)
+        │   └── providers.py            # Провайдеры для внедрения зависимостей
+        ├── domain               # ДОМЕННЫЙ СЛОЙ (Ядро приложения)
+        │   ├── entities                 # СУЩНОСТИ (Ядро бизнес-логики)
+        │   │   └── user.py                      # Entity: Пользователь
+        │   ├── services                 # Доменные сервисы (Логика, не принадлежащая одной сущности)
+        │   │   └── user_service.py              # Сервис для сложных операций с пользователем
+        │   └── value_objects            # VALUE OBJECTS (Неизменяемые объекты с валидацией)
+        │       ├── email_address.py             # VO: Email с валидацией
+        │       └── status.py                    # VO: Статус пользователя (активен/неактивен)
+        ├── infrastructure       # СЛОЙ ИНФРАСТРУКТУРЫ (Реализация портов)
+        │   ├── adapters                 # АДАПТЕРЫ: Реализации клиентов для внешних сервисов
+        │   │   ├── files_client.py              # Реализация для S3/MinIO/Google Drive
+        │   │   └── notifications_client.py      # Реализация для Email/SMS/Telegram API
+        │   ├── persistence              # Всё, что связано с постоянным хранением данных
+        │   │   ├── adapters
+        │   │   │   └── user_repository.py       # Реализация репозитория на SQLAlchemy/Django ORM
+        │   │   ├── migrations                   # Миграции базы данных (Alembic/Django Migrations)
+        │   │   │   └── initial.py
+        │   │   └── transaction_manager.py       # Реализация менеджера транзакций
+        │   └── tasks                    # Фоновые задачи (адаптеры для Celery/ARQ)
+        │       └── send_mail.py                 # Задача на отправку письма
+        └── presentation          # СЛОЙ ПРЕЗЕНТАЦИИ (Внешние интерфейсы: API, Messaging)
+            ├── amqp                       # Представление для брокера сообщений (AMQP)
+            │   └── user_created_handler.py        # Обработчик события "Пользователь создан"
+            └── http                       # Представление для HTTP (REST API, GraphQL)
+                ├── create_user.py                 # HTTP-контроллер (роут) для создания пользователя
+                └── delete_user.py                 # HTTP-контроллер (роут) для удаления пользователя
