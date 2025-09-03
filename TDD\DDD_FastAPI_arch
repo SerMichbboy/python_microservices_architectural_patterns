@@ -1,6 +1,4 @@
 app/
-├── main.py                     # Точка входа (FastAPI, запуск приложения)
-│
 ├── api/                        # Внешний слой (контракты: запросы/ответы)
 │   ├── v1/
 │   │   ├── endpoints/          # REST-эндпоинты (users.py, auth.py, ...)
@@ -40,15 +38,16 @@ app/
 │       ├── config.py           # Настройки SMTP
 │       └── sender.py           # EmailSender (отправка писем)
 │
-└── tests/                      # Тесты (TDD-first)
-    ├── unit/                   # Чистая бизнес-логика (domain, use_cases)
-    │   ├── test_user_entity.py
-    │   └── test_register_user_usecase.py
-    │
-    ├── integration/            # Тесты адаптеров (Redis, Kafka, DB, Email)
-    │   ├── test_user_repo.py
-    │   ├── test_cache_service.py
-    │   └── test_kafka_service.py
-    │
-    └── e2e/                    # Сквозные сценарии (API → DB/Redis/Kafka)
-        └── test_register_flow.py
+├── tests/                      # Тесты (TDD-first)
+│   ├── unit/                   # Чистая бизнес-логика (domain, use_cases)
+│   │   ├── test_user_entity.py
+│   │   └── test_register_user_usecase.py
+│   │
+│   ├── integration/            # Тесты адаптеров (Redis, Kafka, DB, Email)
+│   │   ├── test_user_repo.py
+│   │   ├── test_cache_service.py
+│   │   └── test_kafka_service.py
+│   │
+│   └── e2e/                    # Сквозные сценарии (API → DB/Redis/Kafka)
+│       └── test_register_flow.py
+├── main.py                     # Точка входа (FastAPI, запуск приложения)
