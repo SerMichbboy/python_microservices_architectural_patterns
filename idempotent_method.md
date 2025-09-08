@@ -81,6 +81,7 @@ async def pay(request: Request):
     body = await request.json()
     return {"order": body["orderId"], "status": "paid"}
 
+```
 
 ✅ Преимущества подхода
 
