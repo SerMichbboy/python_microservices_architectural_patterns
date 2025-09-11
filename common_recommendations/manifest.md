@@ -50,6 +50,8 @@ GraphQL (Ariadne, Strawberry) — если нужен единый API для р
 
 Nginx / Traefik — в роли API Gateway.
 
+Dishka — лёгкий и современный Dependency Injection (DI) контейнер для Python.
+
 BFF паттерн — можно использовать FastAPI или Node.js для отдельных шлюзов под каждый клиент.
 
 ---
