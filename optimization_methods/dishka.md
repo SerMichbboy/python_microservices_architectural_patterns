@@ -53,27 +53,6 @@ async def get_db_session() -> AsyncGenerator[AsyncSession, None]:
         yield session
 ```
 
-
-## 🧠 Использование в сервисе
-
-```python
-# application/services/user_service.py
-from dishka import inject, FromDishka
-from sqlalchemy.ext.asyncio import AsyncSession
-
-@inject
-class UserService:
-    def __init__(self, session: AsyncSession = FromDishka()):
-        self.session = session
-
-    async def get_user(self, user_id: int):
-        result = await self.session.execute(
-            select(UserModel).where(UserModel.id == user_id)
-        )
-        return result.scalar_one_or_none()
-```
-
-
 ## 🧱 Архитектурный шаблон (TDD + Clean Architecture)
 
 ```python
@@ -99,7 +78,7 @@ class UserService:
 ```
 
 ## 💡 Примеры лучших практик
-### 🔧 Инъекция в сервис
+### 🔧 Примеры Инъекции в сервис
 
 
 ```python
@@ -118,6 +97,24 @@ class UserService:
         self.kafka = kafka
 
 ```
+
+```python
+# application/services/user_service.py
+from dishka import inject, FromDishka
+from sqlalchemy.ext.asyncio import AsyncSession
+
+@inject
+class UserService:
+    def __init__(self, session: AsyncSession = FromDishka()):
+        self.session = session
+
+    async def get_user(self, user_id: int):
+        result = await self.session.execute(
+            select(UserModel).where(UserModel.id == user_id)
+        )
+        return result.scalar_one_or_none()
+```
+
 
 ### 🚀 Интеграция с FastAPI
 
