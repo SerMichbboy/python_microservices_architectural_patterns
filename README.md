@@ -1,4 +1,4 @@
-# 📘 About "Architect patterns of microservices - recomendations"
+# 📘 About "Architect patterns of microservices: recomendations"
 
 I started this project frist time only for me, and only for documentation whole knowlage about microservice architecture which i meat and see the good potential for use in anymore project.
 
