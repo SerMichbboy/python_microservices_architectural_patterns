@@ -1,6 +1,6 @@
 # 📘 About "Architect patterns of microservices: recomendations"
 
-I started this project frist time only for me, and only for documentation whole knowlage about microservice architecture which i meat and see the good potential for use in anymore project.
+I started this project first time only for me, and only for documentation whole knowlage about microservice architecture which i meat and see the good potential for use in anymore project.
 
 All docs have structure .md format, and present self only information stand.
 
