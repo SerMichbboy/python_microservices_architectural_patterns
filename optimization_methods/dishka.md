@@ -35,17 +35,42 @@ from infrastructure.kafka.producer import get_kafka_producer
 provider = Provider(scope=Scope.APP)
 provider.provide(get_mongo_client)
 provider.provide(get_kafka_producer)
+provider.provide(get_db_session)
 ```
 
 ## 🧠 Как регистрировать зависимости
 Функции, которые создают объекты, должны быть асинхронными и возвращать готовые экземпляры:
 
 ```python
-# infrastructure/db/mongo.py
-from motor.motor_asyncio import AsyncIOMotorClient
+from typing import AsyncGenerator
+from sqlalchemy.ext.asyncio import AsyncSession
+from contextlib import asynccontextmanager
+from app.core.db.db_init import SessionFactory
 
-async def get_mongo_client() -> AsyncIOMotorClient:
-    return AsyncIOMotorClient("mongodb://localhost:27017")
+@asynccontextmanager
+async def get_db_session() -> AsyncGenerator[AsyncSession, None]:
+    async with SessionFactory() as session:
+        yield session
+```
+
+
+## 🧠 Использование в сервисе
+
+```python
+# application/services/user_service.py
+from dishka import inject, FromDishka
+from sqlalchemy.ext.asyncio import AsyncSession
+
+@inject
+class UserService:
+    def __init__(self, session: AsyncSession = FromDishka()):
+        self.session = session
+
+    async def get_user(self, user_id: int):
+        result = await self.session.execute(
+            select(UserModel).where(UserModel.id == user_id)
+        )
+        return result.scalar_one_or_none()
 ```
 
 
