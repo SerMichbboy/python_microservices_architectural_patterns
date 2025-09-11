@@ -1,4 +1,5 @@
-# 📘 About 
+# 📘 About (Architect patterns of microservices)
+
 I started this project frist time only for me, and only for documentation whole knowlage about microservice architecture which i meat and see the good potential for use in anymore project.
 
 All docs have structure .md format, and present self only information stand.
@@ -9,9 +10,6 @@ Project open to suggestions and conversations.
 
 
 # Welcome
-
----
-# 🏛️ Архитектурные паттерны микросервисов
 
 Этот репозиторий создан как **справочник архитектурных решений** и поиска лучших практик при построении систем на Python.  
 Здесь собраны **паттерны, рекомендации по технологиям, правила кодирования и DevOps-подходы**, которые помогают создавать масштабируемые, надёжные и поддерживаемые продукты.
