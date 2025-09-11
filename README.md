@@ -1,3 +1,10 @@
+I started this project for documentation whole knowlage about microservice architecture which i meat and see the good potential for use in anymore project.
+Project open to suggestions and conversations. 
+
+All docs have structure .md format, and present self only information stand.
+
+im glad if you find some interestinf info for yourself.
+
 ---
 # 🏛️ Архитектурные паттерны микросервисов
 
