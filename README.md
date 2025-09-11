@@ -1,14 +1,14 @@
 # 📘 About "Architect patterns of microservices: recomendations"
 
-I started this project first time only for me, and only for documentation whole knowlage about microservice architecture which i meat and see the good potential for use in anymore project.
+I started this project just for myself, to document all the knowledge about microservice architecture that I’ve encountered and seen great potential for using in future projects.
 
-All docs have structure .md format, and present self only information stand.
+All documentation is structured in .md format and focuses purely on standalone technical insights.
 
-im glad if you find some interesting info for yourself.
+I'm glad if you find something useful or interesting here.
 
-Project open to suggestions and conversations. 
+The project is open to suggestions and conversations.
 
-When i started i write in RU speak for convenience, but in the future it'll EN.  
+When I started, I wrote in Russian for convenience, but future updates will be in English.
 
 # Welcome
 
