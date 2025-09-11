@@ -4,7 +4,7 @@ I started this project frist time only for me, and only for documentation whole 
 
 All docs have structure .md format, and present self only information stand.
 
-im glad if you find some interestinf info for yourself.
+im glad if you find some interesting info for yourself.
 
 Project open to suggestions and conversations. 
 
