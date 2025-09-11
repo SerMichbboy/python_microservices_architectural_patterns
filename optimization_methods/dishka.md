@@ -78,25 +78,7 @@ async def get_db_session() -> AsyncGenerator[AsyncSession, None]:
 ```
 
 ## 💡 Примеры лучших практик
-### 🔧 Примеры Инъекции в сервис
-
-
-```python
-from dishka import inject, FromDishka
-from motor.motor_asyncio import AsyncIOMotorClient
-from aiokafka import AIOKafkaProducer
-
-@inject
-class UserService:
-    def __init__(
-        self,
-        db: AsyncIOMotorClient = FromDishka(),
-        kafka: AIOKafkaProducer = FromDishka()
-    ):
-        self.db = db
-        self.kafka = kafka
-
-```
+### 🔧 Инъекция в сервис
 
 ```python
 # application/services/user_service.py
