@@ -8,6 +8,7 @@ im glad if you find some interesting info for yourself.
 
 Project open to suggestions and conversations. 
 
+When i started i write in RU speak for convenience, but in the future it'll EN.  
 
 # Welcome
 
