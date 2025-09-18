@@ -1,0 +1,28 @@
+my_project/
+├── app/
+│   ├── features/
+│   │   ├── users/
+│   │   │   ├── models.py
+│   │   │   ├── schemas.py
+│   │   │   ├── service.py
+│   │   │   ├── repository.py
+│   │   │   ├── routes.py
+│   │   │   └── tests/
+│   │   │       └── test_users.py
+│   │   ├── orders/
+│   │   │   ├── models.py
+│   │   │   ├── schemas.py
+│   │   │   ├── service.py
+│   │   │   ├── repository.py
+│   │   │   ├── routes.py
+│   │   │   └── tests/
+│   │   │       └── test_orders.py
+│   │   └── payments/
+│   │       └── ... (аналогичная структура)
+│   ├── core/
+│   │   ├── config.py
+│   │   ├── database.py
+│   │   └── dependencies.py
+│   └── main.py
+├── requirements.txt
+└── README.md
