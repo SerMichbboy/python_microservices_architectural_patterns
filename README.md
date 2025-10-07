@@ -10,8 +10,6 @@ I'm glad if you find something useful or interesting here.
 
 The project is open to suggestions and conversations.
 
-When I started, I wrote in Russian for convenience, but future updates will be in English.
-
 # Welcome
 
 Этот репозиторий создан как **справочник архитектурных решений** и поиска лучших практик при построении систем на Python.  
